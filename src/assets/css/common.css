@@ -1,3 +1,136 @@
 :root {
-    --theme-color: "#3a3a3a";
+    --font: normal 400 14px/1.5 -apple-system, BlinkMacSystemFont, Oxygen,
+        Ubuntu, Cantarell, Consolas, "Open Sans", "Helvetica Neue", sans-serif;
+    --transition: all 0.24s ease;
+}
+article,
+aside,
+dialog,
+footer,
+header,
+section,
+footer,
+nav,
+figure,
+menu {
+    display: block;
+}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+figure,
+fieldset,
+legend,
+button,
+img,
+input,
+textarea,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+article,
+section,
+body {
+    line-height: 1.5;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+b,
+strong {
+    font-weight: 700;
+}
+html {
+    position: relative;
+    height: 100%;
+    font: var(--font);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+input:-webkit-autofill {
+    background-color: initial;
+}
+ul,
+ol {
+    list-style: none;
+}
+img,
+video,
+audio,
+iframe {
+    display: block;
+    margin: auto;
+    max-height: 100%;
+    max-width: 100%;
+    transition: var(--transition);
+}
+h1 {
+    font-size: 2.4rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.5rem;
+}
+h4 {
+    font-size: 1.2rem;
+}
+
+.i-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    --background: #fff;
+    --background-secondary: #eee;
+    --color: #2a2a2a;
+    --header-height: 36px;
+    --radius: 8px;
+}
+
+.i-btn {
+    position: relative;
+    display: flex;
+    padding: 0 6px;
+    border-radius: var(--radius);
+}
+.i-btn:hover {
+    background: var(--background-secondary);
 }

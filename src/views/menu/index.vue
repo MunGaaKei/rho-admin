@@ -1,1 +1,3 @@
-<template>Menu</template>
+<template>
+    <router-view></router-view>
+</template>

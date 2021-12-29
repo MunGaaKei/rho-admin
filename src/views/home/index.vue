@@ -1,39 +1,43 @@
-<script setup>
-import Header from "@/components/Header.vue";
-import Sidebar from "@/components/Sidebar.vue";
-import NavTabs from "@/components/Nav-tabs.vue";
-</script>
-
 <template>
-    <div class="jing-container">
-        <Sidebar></Sidebar>
-        <div class="jing-content">
-            <Header></Header>
-            <NavTabs active="home"></NavTabs>
-            <div class="jing-content">
-                <router-view v-slot="{ Component }">
-                    <keep-alive>
-                        <component :is="Component"></component>
-                    </keep-alive>
-                </router-view>
-            </div>
-        </div>
+    <div class="content">
+        <template v-if="loading">
+            <n-skeleton text :repeat="1" />
+            <n-skeleton text style="width: 60%" />
+        </template>
+        <h3 v-else>WELCOME {{ username }} : )</h3>
     </div>
 </template>
 
-<style lang="scss" scoped>
-.jing-container {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: flex;
-}
-.jing-content {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    overflow: auto;
+<script>
+import { defineComponent, ref } from "vue";
+import { useStore } from "vuex";
+import { NSkeleton } from "naive-ui";
+
+export default defineComponent({
+    name: "Home",
+    components: {
+        NSkeleton,
+    },
+    setup() {
+        const Store = useStore();
+        const loading = ref(true);
+
+        const username = Store.state.user.name;
+
+        setTimeout(() => {
+            loading.value = false;
+        }, 1000);
+
+        return {
+            loading,
+            username,
+        };
+    },
+});
+</script>
+
+<style scoped>
+.content {
+    padding: 20px;
 }
 </style>

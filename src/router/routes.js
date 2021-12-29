@@ -1,14 +1,20 @@
-import Home from "@/views/home/index.vue";
+import Main from "@/views/main/index.vue";
+
+import Home from "@/views/home/route";
+import Menus from "@/views/menu/route";
+import User from "@/views/user/route";
+import Setting from "@/views/settings/route";
+import Message from "@/views/message/route";
 
 export default [
     {
-        name: "Home",
+        name: "Main",
         path: "/",
-        component: Home,
+        component: Main,
         meta: {
-            title: "首页",
-            roles: [],
+            title: "主页",
         },
+        children: [...Home, ...Menus, ...User, ...Setting, ...Message],
     },
     {
         name: "Login",
@@ -16,27 +22,14 @@ export default [
         component: () => import("@/views/login/index.vue"),
         meta: {
             title: "用户登陆",
-            roles: [],
         },
     },
     {
-        name: "Menu",
-        path: "/menu",
-        component: () => import("@/views/menu/index.vue"),
-        children: [
-            {
-                name: "Menu-1",
-                path: "/menu-1",
-                component: () => import("@/views/menu/menu-1.vue"),
-                meta: {
-                    title: "子菜单",
-                    roles: [],
-                },
-            },
-        ],
+        name: "404",
+        path: "/:pathMatch(.*)*",
+        component: () => import("@/views/404/index.vue"),
         meta: {
-            title: "菜单",
-            roles: [],
+            title: "404",
         },
     },
 ];

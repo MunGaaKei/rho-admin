@@ -1,11 +1,11 @@
 import { createStore } from "vuex";
 
-import User from "./user";
+import user from "./user";
+import tabs from "./tabs";
 
-const store = createStore({
+export default createStore({
     modules: {
-        User,
+        user,
+        tabs,
     },
 });
-
-export default store;

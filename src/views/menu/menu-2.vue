@@ -1,5 +1,5 @@
 <template>
-    <h2>MENU - 1</h2>
+    <h2>MENU - 2</h2>
 </template>
 
 <style scoped>
