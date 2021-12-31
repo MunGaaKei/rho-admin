@@ -13,7 +13,7 @@
                     class="i-menu-icon"
                 ></span>
                 <span class="i-menu-title" :class="{ 'i-hide-mini': root }">{{
-                    menu.meta?.title || "Untitled"
+                    menu.meta.i18n ? t(menu.meta.title) : menu.meta?.title
                 }}</span>
             </router-link>
             <i
@@ -32,6 +32,7 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
     name: "SidebarMenu",
@@ -52,6 +53,7 @@ export default defineComponent({
     setup(props) {
         const Router = useRouter();
         const Route = useRoute();
+        const { t } = useI18n();
 
         const active = ref(props.active);
 
@@ -71,6 +73,7 @@ export default defineComponent({
             active,
             root,
             handleToggle,
+            t,
         };
     },
 });

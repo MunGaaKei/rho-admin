@@ -6,7 +6,7 @@
             <div class="i-dropdown">
                 <a class="ri-more-fill i-btn"></a>
                 <div class="i-dropmenu">
-                    <a class="ri-translate i-btn"></a>
+                    <a @click="changeLocale" class="ri-translate i-btn"></a>
 
                     <router-link to="/settings" class="i-btn">
                         <i class="ri-settings-3-fill"></i>
@@ -46,6 +46,7 @@ import { useStore } from "vuex";
 import { NTooltip, NAvatar } from "naive-ui";
 import NavTabs from "./Nav-tabs.vue";
 import { fullscreen } from "@/utils/utils";
+import i18n from "@/locale";
 
 export default defineComponent({
     name: "Header",
@@ -58,12 +59,19 @@ export default defineComponent({
         const Store = useStore();
         const user = Store.state.user;
         const unread = ref(true);
+        let locale = "en";
+
+        function changeLocale() {
+            locale = locale === "en" ? "cn" : "en";
+            i18n.global.locale.value = locale;
+        }
 
         return {
             user,
             attrs,
             unread,
             fullscreen,
+            changeLocale,
         };
     },
 });

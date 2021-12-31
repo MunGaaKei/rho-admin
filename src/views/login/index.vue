@@ -10,7 +10,7 @@
             <n-form-item path="username">
                 <n-input
                     v-model:value="formState.username"
-                    placeholder="Username"
+                    :placeholder="t('common.username')"
                     :input-props="{ autocomplete: 'off' }"
                 ></n-input>
             </n-form-item>
@@ -18,7 +18,7 @@
                 <n-input
                     v-model:value="formState.password"
                     type="password"
-                    placeholder="Password"
+                    :placeholder="t('common.password')"
                     :input-props="{ autocomplete: 'off' }"
                 ></n-input>
             </n-form-item>
@@ -31,7 +31,7 @@
                     :disabled="invalidForm()"
                     style="margin-left: auto; width: 120px"
                 >
-                    登陆
+                    {{ t("common.signin") }}
                 </n-button>
             </n-form-item>
         </n-form>
@@ -43,6 +43,7 @@ import { ref, reactive, defineComponent } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { NForm, NFormItem, NInput, NButton, useMessage } from "naive-ui";
+import { useI18n } from "vue-i18n";
 import { APP_NAME } from "@/settings.js";
 
 export default defineComponent({
@@ -50,6 +51,7 @@ export default defineComponent({
         const Store = useStore();
         const Router = useRouter();
         const Message = useMessage();
+        const { t } = useI18n();
         const formState = reactive({
             username: "",
             password: "",
@@ -101,6 +103,7 @@ export default defineComponent({
             rules,
             handleSubmit,
             invalidForm,
+            t,
         };
     },
     components: {

@@ -6,7 +6,7 @@
                 <n-skeleton text style="width: 100px" />
             </n-space>
         </template>
-        <h3 v-else>WELCOME! {{ username }} : )</h3>
+        <h3 v-else>{{ t("common.welcome") }}! {{ username }} : )</h3>
     </div>
 </template>
 
@@ -14,6 +14,7 @@
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import { NSkeleton, NSpace } from "naive-ui";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
     name: "Home",
@@ -24,16 +25,18 @@ export default defineComponent({
     setup() {
         const Store = useStore();
         const loading = ref(true);
+        const { t } = useI18n();
 
         const username = Store.state.user.name;
 
         setTimeout(() => {
             loading.value = false;
-        }, 1000);
+        }, 100);
 
         return {
             loading,
             username,
+            t,
         };
     },
 });

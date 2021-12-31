@@ -38,7 +38,7 @@
         <n-auto-complete
             v-model:value="valueSearch"
             :options="optionsSearch"
-            placeholder="Search"
+            :placeholder="t('common.search')"
             class="i-search"
             clearable
             size="large"
@@ -57,6 +57,7 @@ import {
 import SidebarMenu from "./Sidebar-menu.vue";
 import { NScrollbar, NAutoComplete, NModal } from "naive-ui";
 import { APP_LOGO, APP_TITLE } from "@/settings.js";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
     name: "Sidebar",
@@ -75,6 +76,7 @@ export default defineComponent({
     setup(props) {
         const MINI_WIDTH = 50;
         const menus = ref(props.menus);
+        const { t } = useI18n();
 
         const width = ref(MINI_WIDTH);
         const resizing = ref(false);
@@ -158,6 +160,7 @@ export default defineComponent({
             toggleModalSearch,
             startResizeSidebar,
             handleSidebarToggle,
+            t,
         };
     },
 });

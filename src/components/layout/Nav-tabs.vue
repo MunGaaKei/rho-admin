@@ -13,7 +13,7 @@
                 :class="{ 'tab-active': tabs.active === tab.name }"
                 @contextmenu.prevent="handleContextMenu(tab, $event)"
             >
-                <span>{{ tab.title }}</span>
+                <span>{{ tab.i18n ? t(tab.title) : tab.title }}</span>
                 <i class="ri-close-line" @click.prevent="handleClose(tab)"></i>
             </router-link>
         </n-scrollbar>
@@ -37,6 +37,7 @@ import { ref, defineComponent, computed, nextTick, defineEmits } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { NScrollbar, NDropdown } from "naive-ui";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
     components: {
@@ -50,6 +51,7 @@ export default defineComponent({
 
         const tabs = computed(() => Store.state.tabs);
         const scrollbar$ = ref(null);
+        const { t } = useI18n();
 
         const showContextMenu = ref(false);
         const CoordX = ref(0);
@@ -87,13 +89,14 @@ export default defineComponent({
                 name,
                 path,
                 fullPath,
-                meta: { title, noCache },
+                meta: { title, noCache, i18n },
             } = route;
             Store.commit("tabs/TABS_ADD", {
                 title,
                 name,
                 path,
                 noCache,
+                i18n,
                 fullPath,
             });
         }
@@ -160,6 +163,7 @@ export default defineComponent({
             handleContextMenu,
             hideContextMenu,
             handleContextMenuSelect,
+            t,
         };
     },
 });

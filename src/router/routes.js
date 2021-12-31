@@ -6,13 +6,23 @@ import User from "@/views/user/route";
 import Setting from "@/views/settings/route";
 import Message from "@/views/message/route";
 
+/**
+ * ${param} meta:
+ * title: String
+ * auth: Array[] 权限
+ * i18n: Boolean
+ * icon: String('<i class="ri-hotel-fill"></i>')
+ * noCache: Boolean 不缓存，默认false
+ * hide: Boolean 在侧边栏隐藏，默认false
+ */
 export default [
     {
         name: "Main",
         path: "/",
         component: Main,
         meta: {
-            title: "主页",
+            title: "routes.home",
+            i18n: true,
         },
         children: [...Home, ...Menus, ...User, ...Setting, ...Message],
     },
@@ -21,7 +31,8 @@ export default [
         path: "/login",
         component: () => import("@/views/login/index.vue"),
         meta: {
-            title: "用户登陆",
+            title: "routes.signin",
+            i18n: true,
         },
     },
     {

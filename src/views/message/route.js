@@ -6,8 +6,9 @@ export default [
         path: BASE,
         component: () => import("./index.vue"),
         meta: {
-            title: "消息中心",
+            title: "routes.messages",
             hide: true,
+            i18n: true,
         },
     },
 ];

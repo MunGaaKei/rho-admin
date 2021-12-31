@@ -6,7 +6,8 @@ export default [
         path: BASE,
         component: () => import("./index.vue"),
         meta: {
-            title: "首页",
+            title: "routes.home",
+            i18n: true,
             noCache: true,
             icon: '<i class="ri-hotel-fill"></i>',
         },

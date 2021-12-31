@@ -1,7 +1,7 @@
 <template>
     <div class="content">
         <div class="header">
-            <h3>Hi, {{ name }}</h3>
+            <h3>{{ t("common.hi") }}, {{ name }}</h3>
             <n-button-group>
                 <n-button
                     strong
@@ -10,7 +10,7 @@
                     type="error"
                     @click="handleLogOut"
                 >
-                    {{ text_logout }}
+                    {{ cancelable ? t("common.confirm") : t("common.signout") }}
                 </n-button>
                 <n-button
                     v-show="cancelable"
@@ -18,7 +18,7 @@
                     secondary
                     size="small"
                 >
-                    {{ text_cancel }}
+                    {{ t("common.cancel") }}
                 </n-button>
             </n-button-group>
         </div>
@@ -31,6 +31,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { NButton, NButtonGroup } from "naive-ui";
 import { mapState } from "@/store/mapStore";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
     name: "User",
@@ -41,9 +42,8 @@ export default defineComponent({
     setup() {
         const Store = useStore();
         const Router = useRouter();
+        const { t } = useI18n();
 
-        let text_logout = ref("注销");
-        let text_cancel = ref("取消");
         let cancelable = ref(false);
 
         function handleLogOut() {
@@ -51,23 +51,20 @@ export default defineComponent({
                 Store.commit("user/USER_LOGOUT");
                 Router.push("/login");
             } else {
-                text_logout.value = "确认";
                 cancelable.value = true;
             }
         }
 
         function cancleLogOut() {
-            text_logout.value = "注销";
             cancelable.value = false;
         }
 
         return {
-            text_logout,
-            text_cancel,
             cancelable,
             ...mapState(Store.state.user, ["name"]),
             handleLogOut,
             cancleLogOut,
+            t,
         };
     },
 });

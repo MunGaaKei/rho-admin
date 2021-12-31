@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import routes from "./routes";
 import { APP_TITLE, ON_PERMISSION } from "@/settings.js";
 import { hasPermission } from "./permission";
+import Locale from "@/locale";
 
 const Router = createRouter({
     history: createWebHistory(),
@@ -28,8 +29,8 @@ Router.beforeEach((to, from, next) => {
 });
 
 Router.afterEach((to, from) => {
-    let { title } = to?.meta;
-
+    let { title, i18n } = to?.meta;
+    title = i18n ? Locale.global.t(title) : title;
     document.title = `${APP_TITLE} ${title}`;
 });
 

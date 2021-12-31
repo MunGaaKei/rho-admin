@@ -6,7 +6,8 @@ export default [
         path: BASE,
         component: () => import("./index.vue"),
         meta: {
-            title: "用户中心",
+            title: "routes.user",
+            i18n: true,
             hide: true,
         },
     },
