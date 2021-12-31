@@ -10,17 +10,13 @@
             </div>
             <h1 v-if="!mini" class="i-app-title">{{ APP_TITLE }}</h1>
             <a
+                @click="toggleModalSearch"
+                class="ri-search-line i-sidebar-search i-btn"
+            ></a>
+            <a
                 @click="handleSidebarToggle"
                 class="ri-menu-4-line i-sidebar-toggle i-btn"
             ></a>
-
-            <!-- <n-auto-complete
-                :options="searchResult"
-                v-model:value="searchValue"
-                class="i-header-search"
-            >
-                <template #prefix><i class="ri-search-line"></i></template>
-            </n-auto-complete> -->
         </div>
 
         <ul v-if="mini" class="i-menus">
@@ -37,6 +33,17 @@
             class="i-sidebar-toggle-line"
         ></div>
     </div>
+
+    <n-modal v-model:show="modalSearch" :bordered="false">
+        <n-auto-complete
+            v-model:value="valueSearch"
+            :options="optionsSearch"
+            placeholder="Search"
+            class="i-search"
+            clearable
+            size="large"
+        ></n-auto-complete>
+    </n-modal>
 </template>
 
 <script>
@@ -48,7 +55,7 @@ import {
     computed,
 } from "vue";
 import SidebarMenu from "./Sidebar-menu.vue";
-import { NScrollbar, NAutoComplete } from "naive-ui";
+import { NScrollbar, NAutoComplete, NModal } from "naive-ui";
 import { APP_LOGO, APP_TITLE } from "@/settings.js";
 
 export default defineComponent({
@@ -57,6 +64,7 @@ export default defineComponent({
         NScrollbar,
         NAutoComplete,
         SidebarMenu,
+        NModal,
     },
     props: {
         menus: {
@@ -80,9 +88,9 @@ export default defineComponent({
         const mini = computed(() => {
             return width.value < 120;
         });
-
-        const searchResult = ref([]);
-        const searchValue = ref("");
+        const modalSearch = ref(false);
+        const valueSearch = ref("");
+        const optionsSearch = ref([]);
 
         let ox = 0;
         let ow = width.value;
@@ -132,6 +140,10 @@ export default defineComponent({
             ow = width.value;
         }
 
+        function toggleModalSearch() {
+            modalSearch.value = !modalSearch.value;
+        }
+
         return {
             APP_LOGO,
             APP_TITLE,
@@ -140,10 +152,12 @@ export default defineComponent({
             resizing,
             cssSidebar,
             mini,
+            valueSearch,
+            modalSearch,
+            optionsSearch,
+            toggleModalSearch,
             startResizeSidebar,
             handleSidebarToggle,
-            searchResult,
-            searchValue,
         };
     },
 });
@@ -170,6 +184,14 @@ export default defineComponent({
     width: 100%;
     padding: 12px 8px;
     background: inherit;
+    .i-btn {
+        font-size: 1.4em;
+        padding: 6px;
+        line-height: 1;
+        &:hover {
+            background: var(--background);
+        }
+    }
 }
 .i-logo {
     display: flex;
@@ -183,9 +205,14 @@ export default defineComponent({
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.i-header-search {
-    margin-top: 8px;
-    width: 100%;
+.i-sidebar-search {
+    margin-left: auto;
+}
+.i-search {
+    width: 400px;
+    max-width: 100%;
+    margin: 120px auto 40px;
+    align-self: flex-start;
 }
 .i-menus {
     margin: 20px 8px;
@@ -196,14 +223,11 @@ export default defineComponent({
     .i-sidebar-header {
         flex-direction: column;
     }
-}
-.i-sidebar-toggle {
-    margin-left: auto;
-    font-size: 1.4em;
-    padding: 6px;
-    line-height: 1;
-    &:hover {
-        background: var(--background);
+    .i-sidebar-search {
+        order: 1;
+    }
+    .i-logo {
+        margin-bottom: 12px;
     }
 }
 .i-sidebar-toggle-line {

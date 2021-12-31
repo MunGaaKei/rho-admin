@@ -1,22 +1,25 @@
 <template>
     <div class="content">
         <template v-if="loading">
-            <n-skeleton text :repeat="1" />
-            <n-skeleton text style="width: 60%" />
+            <n-space vertical>
+                <n-skeleton text style="width: 200px" />
+                <n-skeleton text style="width: 100px" />
+            </n-space>
         </template>
-        <h3 v-else>WELCOME {{ username }} : )</h3>
+        <h3 v-else>WELCOME! {{ username }} : )</h3>
     </div>
 </template>
 
 <script>
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
-import { NSkeleton } from "naive-ui";
+import { NSkeleton, NSpace } from "naive-ui";
 
 export default defineComponent({
     name: "Home",
     components: {
         NSkeleton,
+        NSpace,
     },
     setup() {
         const Store = useStore();

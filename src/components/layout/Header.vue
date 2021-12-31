@@ -28,7 +28,10 @@
             <n-tooltip>
                 <template #trigger>
                     <router-link to="/user" class="i-btn i-user">
-                        <img :src="user.avatar" class="i-avatar" />
+                        <n-avatar
+                            :src="user.avatar"
+                            class="i-avatar"
+                        ></n-avatar>
                     </router-link>
                 </template>
                 <span>{{ user.name }}</span>
@@ -40,13 +43,14 @@
 <script>
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
-import { NTooltip } from "naive-ui";
+import { NTooltip, NAvatar } from "naive-ui";
 import NavTabs from "./Nav-tabs.vue";
 import { fullscreen } from "@/utils/utils";
 
 export default defineComponent({
     name: "Header",
     components: {
+        NAvatar,
         NTooltip,
         NavTabs,
     },

@@ -111,6 +111,13 @@ h4 {
     font-size: 1.2rem;
 }
 
+:root {
+    --background: #fff;
+    --background-secondary: #eee;
+    --color: #2a2a2a;
+    --header-height: 36px;
+    --radius: 8px;
+}
 .i-container {
     position: absolute;
     left: 0;
@@ -118,11 +125,6 @@ h4 {
     top: 0;
     bottom: 0;
     display: flex;
-    --background: #fff;
-    --background-secondary: #eee;
-    --color: #2a2a2a;
-    --header-height: 36px;
-    --radius: 8px;
 }
 
 .i-btn {

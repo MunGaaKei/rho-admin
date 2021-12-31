@@ -53,8 +53,9 @@ export default defineComponent({
         const Router = useRouter();
         const Route = useRoute();
 
-        let active = ref(props.active);
-        let root = ref(props.root);
+        const active = ref(props.active);
+
+        let root = props.root;
 
         active.value = Route.path;
 
@@ -165,9 +166,6 @@ export default defineComponent({
 .i-sidebar-mini {
     .i-hide-mini {
         display: none;
-    }
-    .i-menus > .i-menu-li {
-        margin: 0 0 8px 0;
     }
     .i-menu-li {
         position: relative;
