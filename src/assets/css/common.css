@@ -113,10 +113,13 @@ h4 {
 
 :root {
     --background: #fff;
-    --background-secondary: #eee;
+    --background-secondary: #efeef1;
     --color: #2a2a2a;
+    --color-secondary: #4a4a4a;
+    --color-slight: #999;
     --header-height: 36px;
     --radius: 8px;
+    --shadow: 0 0 8px rgba(0, 0, 0, 0.05);
 }
 .i-container {
     position: absolute;
@@ -125,6 +128,7 @@ h4 {
     top: 0;
     bottom: 0;
     display: flex;
+    overflow: hidden;
 }
 
 .i-btn {

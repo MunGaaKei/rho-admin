@@ -12,14 +12,18 @@
                     v-html="menu.meta.icon"
                     class="i-menu-icon"
                 ></span>
-                <span class="i-menu-title" :class="{ 'i-hide-mini': root }">{{
-                    menu.meta.i18n ? t(menu.meta.title) : menu.meta?.title
-                }}</span>
+                <span
+                    class="i-menu-title"
+                    :class="{ 'i-hide-on-mini': root }"
+                    >{{
+                        menu.meta.i18n ? t(menu.meta.title) : menu.meta?.title
+                    }}</span
+                >
             </router-link>
             <i
                 v-if="menu.children?.length"
                 class="ri-arrow-down-s-line i-menu-toggle"
-                :class="{ 'i-hide-mini': root }"
+                :class="{ 'i-hide-on-mini': root }"
                 @click="handleToggle(menu.path)"
             ></i>
         </div>
@@ -84,51 +88,41 @@ export default defineComponent({
     position: relative;
     margin: 2px 0;
     transition: var(--transition);
-    color: #4a4a4a;
     user-select: none;
     cursor: pointer;
     overflow: hidden;
     border-radius: var(--radius);
-    &:hover,
-    &.i-active {
-        background: var(--background);
-    }
+    color: var(--color-slight);
 }
 .i-sub-menu {
     z-index: 1;
     box-sizing: border-box;
     height: 0;
-    padding: 0;
+    padding: 0 0 0 2rem;
     font-size: 0.86em;
     transition: var(--transition);
     border-radius: 0 0 var(--radius) var(--radius);
-    background: var(--background-secondary);
-    border-top: 1px solid transparent;
-    .i-menu-li {
-        margin: 0;
-        &:not(:first-child) {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-        &:not(:last-child) {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
+    background: var(--background);
+}
+.i-active {
+    & > .i-menu-item {
+        background: var(--background-secondary);
+        color: var(--color);
+        & > .i-menu-toggle {
+            transform: rotateX(180deg);
         }
     }
-}
-.i-active > .i-sub-menu {
-    height: unset;
-    padding: 2px 0;
-    background: var(--background);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    & > .i-sub-menu {
+        height: unset;
+        padding: 1px 0 1px 2rem;
+    }
 }
 .i-menu-item {
     display: flex;
     transition: inherit;
-    border-radius: inherit;
+    border-radius: var(--radius);
     &:hover {
-        background: var(--background);
-        color: var(--color);
+        background: var(--background-secondary);
     }
 }
 .i-menu-toggle {
@@ -167,16 +161,16 @@ export default defineComponent({
 }
 
 .i-sidebar-mini {
-    .i-hide-mini {
+    .i-hide-on-mini {
         display: none;
     }
     .i-menu-li {
         position: relative;
         &:hover {
             overflow: unset;
-            .i-sub-menu {
-                height: unset;
-            }
+        }
+        &.i-active {
+            box-shadow: var(--shadow);
         }
     }
     .i-sub-menu {
@@ -185,12 +179,12 @@ export default defineComponent({
         top: 0;
         margin-left: 1px;
         width: 160px;
-        padding: 0;
+        height: unset;
+        padding: 0 2px;
         font-size: 1em;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
-        background: var(--background-secondary);
+        background: var(--background);
         border-radius: var(--radius);
-        border-top: none;
+        box-shadow: var(--shadow);
     }
 }
 </style>

@@ -12,6 +12,10 @@ export default {
         username: "用户名",
         password: "密码",
         back: "返回",
+        closeLeft: "关闭左侧",
+        closeAll: "关闭所有",
+        closeOthers: "关闭其它",
+        refresh: "刷新",
     },
 
     routes: {

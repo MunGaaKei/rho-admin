@@ -5,6 +5,3 @@ dist-ssr
 *.local
 package-lock.json
 .vscode
-.env
-.env.development
-.env.production

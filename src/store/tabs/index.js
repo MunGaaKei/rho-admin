@@ -51,7 +51,7 @@ const mutations = {
         let { tab, key } = payload;
 
         switch (key) {
-            case "close-rest":
+            case "close-others":
                 state.tabs = [tab];
                 state.active = tab.name;
                 break;

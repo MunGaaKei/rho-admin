@@ -31,7 +31,7 @@ export default defineComponent({
 
         setTimeout(() => {
             loading.value = false;
-        }, 100);
+        }, 600);
 
         return {
             loading,

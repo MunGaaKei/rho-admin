@@ -170,11 +170,12 @@ export default defineComponent({
 .i-sidebar {
     position: relative;
     max-width: 100%;
+    border-right: 2px solid var(--background-secondary);
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: var(--background-secondary);
     transition: var(--transition);
+    background: var(--background);
 }
 .i-sidebar-header {
     position: sticky;
@@ -220,6 +221,7 @@ export default defineComponent({
 .i-menus {
     margin: 20px 8px;
     flex: 1;
+    align-self: stretch;
 }
 
 .i-sidebar-mini {

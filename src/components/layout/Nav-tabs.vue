@@ -20,7 +20,7 @@
 
         <n-dropdown
             :show="showContextMenu"
-            :options="ContextMenuOptions"
+            :options="generateContextMenu()"
             :x="CoordX"
             :y="CoordY"
             :on-clickoutside="hideContextMenu"
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { ref, defineComponent, computed, nextTick, defineEmits } from "vue";
+import { ref, defineComponent, computed, nextTick, h } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import { NScrollbar, NDropdown } from "naive-ui";
@@ -56,24 +56,7 @@ export default defineComponent({
         const showContextMenu = ref(false);
         const CoordX = ref(0);
         const CoordY = ref(0);
-        const ContextMenuOptions = [
-            {
-                label: "关闭全部",
-                key: "close-all",
-            },
-            {
-                label: "关闭左侧",
-                key: "close-left",
-            },
-            {
-                label: "关闭其它",
-                key: "close-rest",
-            },
-            {
-                label: "强制刷新",
-                key: "refresh",
-            },
-        ];
+        const ContextMenuOptions = generateContextMenu();
 
         let handledTab = null;
 
@@ -91,6 +74,7 @@ export default defineComponent({
                 fullPath,
                 meta: { title, noCache, i18n },
             } = route;
+
             Store.commit("tabs/TABS_ADD", {
                 title,
                 name,
@@ -136,6 +120,31 @@ export default defineComponent({
             hideContextMenu();
         }
 
+        function generateContextMenu() {
+            return [
+                {
+                    label: t("common.closeAll"),
+                    key: "close-all",
+                    icon: renderContextMenuIcon("ri-delete-bin-line"),
+                },
+                {
+                    label: t("common.closeLeft"),
+                    key: "close-left",
+                    icon: renderContextMenuIcon("ri-menu-fold-fill"),
+                },
+                {
+                    label: t("common.closeOthers"),
+                    key: "close-others",
+                    icon: renderContextMenuIcon("ri-arrow-left-right-fill"),
+                },
+                {
+                    label: t("common.refresh"),
+                    key: "refresh",
+                    icon: renderContextMenuIcon("ri-refresh-line"),
+                },
+            ];
+        }
+
         function handleContextMenu(tab, e) {
             showContextMenu.value = false;
             handledTab = tab;
@@ -151,6 +160,12 @@ export default defineComponent({
             handledTab = null;
         }
 
+        function renderContextMenuIcon(icon) {
+            return () => {
+                return h("i", { class: icon });
+            };
+        }
+
         return {
             scrollbar$,
             tabs,
@@ -163,6 +178,7 @@ export default defineComponent({
             handleContextMenu,
             hideContextMenu,
             handleContextMenuSelect,
+            generateContextMenu,
             t,
         };
     },

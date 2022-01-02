@@ -18,6 +18,7 @@ export default [
                 meta: {
                     title: "菜单 1",
                     auth: [],
+                    i18n: false,
                 },
             },
             {
@@ -27,6 +28,7 @@ export default [
                 meta: {
                     title: "菜单 2",
                     auth: [],
+                    i18n: false,
                 },
             },
         ],

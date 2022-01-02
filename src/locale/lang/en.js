@@ -12,6 +12,10 @@ export default {
         username: "Username",
         password: "Password",
         back: "Return Back",
+        closeLeft: "Close Left",
+        closeAll: "Close All",
+        closeOthers: "Close Others",
+        refresh: "Refresh",
     },
 
     routes: {

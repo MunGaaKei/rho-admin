@@ -22,7 +22,7 @@
                 class="i-btn"
                 :class="{ 'i-unread': unread }"
             >
-                <i class="ri-notification-3-fill"></i>
+                <i class="ri-notification-3-line"></i>
             </router-link>
 
             <n-tooltip>
