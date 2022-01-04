@@ -1,12 +1,14 @@
 <template>
     <h2>MENU - 1</h2>
+    <n-button>124124</n-button>
 </template>
 
 <script>
 import { defineComponent } from "vue";
-import { UserLogin } from "@/api/user";
+import { NButton } from "naive-ui";
 
 export default defineComponent({
+    components: { NButton },
     setup() {
         return {};
     },

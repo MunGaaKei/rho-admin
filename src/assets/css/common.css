@@ -121,6 +121,13 @@ h4 {
     --radius: 8px;
     --shadow: 0 0 8px rgba(0, 0, 0, 0.05);
 }
+.theme-dark {
+    --background: #2a2a2a;
+    --background-secondary: #4a4a4a;
+    --color: #fff;
+    --color-secondary: #efeef1;
+    --color-slight: #999;
+}
 .i-container {
     position: absolute;
     left: 0;
@@ -129,6 +136,8 @@ h4 {
     bottom: 0;
     display: flex;
     overflow: hidden;
+    background: var(--background);
+    color: var(--color);
 }
 
 .i-btn {

@@ -12,7 +12,7 @@
                         <i class="ri-settings-3-fill"></i>
                     </router-link>
 
-                    <a class="ri-t-shirt-fill i-btn"></a>
+                    <a @click="changeTheme" class="ri-t-shirt-fill i-btn"></a>
                 </div>
             </div>
             <a class="ri-fullscreen-line i-btn" @click="fullscreen()"></a>
@@ -66,11 +66,16 @@ export default defineComponent({
             i18n.global.locale.value = locale;
         }
 
+        function changeTheme() {
+            Store.commit("settings/CHANGE_THEME");
+        }
+
         return {
             user,
             attrs,
             unread,
             fullscreen,
+            changeTheme,
             changeLocale,
         };
     },

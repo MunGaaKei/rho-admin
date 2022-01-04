@@ -20,4 +20,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+h2 {
+    padding: 8px 12px;
+}
+</style>

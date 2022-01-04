@@ -175,7 +175,6 @@ export default defineComponent({
     flex-direction: column;
     align-items: center;
     transition: var(--transition);
-    background: var(--background);
 }
 .i-sidebar-header {
     position: sticky;
