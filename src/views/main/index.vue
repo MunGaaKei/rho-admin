@@ -1,5 +1,4 @@
 <script setup>
-import { nextTick, ref } from "vue";
 import { useStore } from "vuex";
 import Header from "@/components/layout/Header.vue";
 import Sidebar from "@/components/layout/Sidebar.vue";
@@ -11,20 +10,7 @@ import { mapState } from "@/store/mapStore";
 const Store = useStore();
 const menus = filterMenus(routes, Store.state.user.role);
 
-const { tabs, cacheViews, noCacheViews } = mapState(Store.state.tabs, [
-    "tabs",
-    "cacheViews",
-    "noCacheViews",
-]);
-
-let refresh = ref(true);
-
-function handleRefresh() {
-    refresh.value = false;
-    nextTick(() => {
-        refresh.value = true;
-    });
-}
+const { tabs, cacheViews } = mapState(Store.state.tabs, ["tabs", "cacheViews"]);
 </script>
 
 <template>
@@ -32,14 +18,11 @@ function handleRefresh() {
         <Sidebar :menus="menus"></Sidebar>
 
         <div class="i-main">
-            <Header @refresh-tab="handleRefresh"></Header>
+            <Header></Header>
+
             <n-scrollbar v-if="tabs.length" class="i-content">
-                <router-view v-if="refresh" v-slot="{ Component }">
-                    <keep-alive
-                        :include="cacheViews"
-                        :exclude="noCacheViews"
-                        :max="12"
-                    >
+                <router-view v-slot="{ Component }">
+                    <keep-alive :include="cacheViews">
                         <component
                             :is="Component"
                             :key="$route.fullPath"
@@ -47,6 +30,7 @@ function handleRefresh() {
                     </keep-alive>
                 </router-view>
             </n-scrollbar>
+
             <div v-else class="i-empty">
                 <i class="ri-layout-masonry-line"></i>
             </div>

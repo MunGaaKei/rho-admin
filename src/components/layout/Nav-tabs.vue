@@ -44,7 +44,7 @@ export default defineComponent({
         NScrollbar,
         NDropdown,
     },
-    setup(props, { emit }) {
+    setup(props, {}) {
         const Store = useStore();
         const Route = useRoute();
         const Router = useRouter();
@@ -72,15 +72,17 @@ export default defineComponent({
                 name,
                 path,
                 fullPath,
-                meta: { title, noCache, i18n },
+                query,
+                meta: { title, noCached, i18n },
             } = route;
 
             Store.commit("tabs/TABS_ADD", {
                 title,
                 name,
                 path,
-                noCache,
+                noCached,
                 i18n,
+                query,
                 fullPath,
             });
         }
@@ -111,7 +113,6 @@ export default defineComponent({
                     break;
                 case "refresh":
                     Store.commit("tabs/TABS_REFRESH", handledTab);
-                    emit("refresh-tab", handledTab);
                     break;
                 default:
                     break;

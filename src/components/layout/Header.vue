@@ -1,6 +1,6 @@
 <template>
     <div class="i-header">
-        <nav-tabs v-bind="attrs"></nav-tabs>
+        <nav-tabs></nav-tabs>
 
         <div class="i-header-items">
             <div class="i-dropdown">

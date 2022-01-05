@@ -1,6 +1,6 @@
 export const APP_NAME = "Daphne odera";
 
-export const APP_TITLE = "后台";
+export const APP_TITLE = "后台系统";
 
 export const APP_LOGO = "https://cdn-icons-png.flaticon.com/128/26/26103.png";
 

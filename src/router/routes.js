@@ -12,7 +12,7 @@ import Message from "@/views/message/route";
  * auth: Array[] 权限
  * i18n: Boolean
  * icon: String('<i class="ri-hotel-fill"></i>')
- * noCache: Boolean 不缓存，默认false
+ * noCached: Boolean 不缓存，默认false
  * hide: Boolean 在侧边栏隐藏，默认false
  */
 export default [

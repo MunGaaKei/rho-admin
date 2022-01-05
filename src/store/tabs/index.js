@@ -1,9 +1,9 @@
 import Router from "@/router";
+import { nextTick } from "vue";
 
 const state = {
     tabs: [],
     active: "",
-    noCacheViews: [],
     cacheViews: [],
 };
 
@@ -23,23 +23,28 @@ const mutations = {
             state.tabs.push(tab);
         }
 
-        if (tab.noCache === true) {
-            state.noCacheViews.push(tab.name);
-            state.noCacheViews = [...new Set(state.noCacheViews)];
-        } else {
+        if (tab.noCached !== true) {
             state.cacheViews.push(tab.name);
             state.cacheViews = [...new Set(state.cacheViews)];
         }
     },
 
     TABS_CLOSE: (state, tab) => {
-        let index = state.tabs.findIndex((t) => {
+        let tabIndex = state.tabs.findIndex((t) => {
             return t.name === tab.name;
         });
-        if (index > -1) {
-            state.tabs.splice(index, 1);
+        let cachedIndex = state.cacheViews.findIndex((v) => {
+            return v === tab.name;
+        });
+
+        if (cachedIndex > -1) {
+            state.cacheViews.splice(cachedIndex, 1);
+        }
+
+        if (tabIndex > -1) {
+            state.tabs.splice(tabIndex, 1);
             if (state.tabs.length) {
-                tab = state.tabs[index === 0 ? 0 : --index];
+                tab = state.tabs[tabIndex === 0 ? 0 : --tabIndex];
                 Router.push({ name: tab.name });
             } else {
                 Router.push("/");
@@ -75,12 +80,18 @@ const mutations = {
     },
 
     TABS_REFRESH: (state, tab) => {
-        let index = state.noCacheViews.findIndex((name) => {
-            return name === tab.name;
+        let cacheIndex = state.cacheViews.findIndex((v) => {
+            return v === tab.name;
         });
-        if (index < 0) {
-            state.noCacheViews.splice(index, 1);
-        }
+        state.cacheViews.splice(cacheIndex, 1);
+
+        nextTick(() => {
+            Router.push({
+                query: Object.assign({}, tab.query, {
+                    _t: new Date().getTime(),
+                }),
+            });
+        });
     },
 };
 

@@ -8,7 +8,7 @@ export default [
         meta: {
             title: "routes.home",
             i18n: true,
-            noCache: true,
+            noCached: true,
             icon: '<i class="ri-hotel-fill"></i>',
         },
     },
