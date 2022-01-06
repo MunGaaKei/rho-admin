@@ -2,6 +2,7 @@
 import { useStore } from "vuex";
 import Header from "@/components/layout/Header.vue";
 import Sidebar from "@/components/layout/Sidebar.vue";
+import RouterBeta from "@/components/Router-beta.vue";
 import { NScrollbar } from "naive-ui";
 import routes from "@/router/routes";
 import { filterMenus } from "@/utils/utils";
@@ -10,7 +11,7 @@ import { mapState } from "@/store/mapStore";
 const Store = useStore();
 const menus = filterMenus(routes, Store.state.user.role);
 
-const { tabs, cacheViews } = mapState(Store.state.tabs, ["tabs", "cacheViews"]);
+const { tabs } = mapState(Store.state.tabs, ["tabs"]);
 </script>
 
 <template>
@@ -21,14 +22,7 @@ const { tabs, cacheViews } = mapState(Store.state.tabs, ["tabs", "cacheViews"]);
             <Header></Header>
 
             <n-scrollbar v-if="tabs.length" class="i-content">
-                <router-view v-slot="{ Component }">
-                    <keep-alive :include="cacheViews">
-                        <component
-                            :is="Component"
-                            :key="$route.fullPath"
-                        ></component>
-                    </keep-alive>
-                </router-view>
+                <router-beta></router-beta>
             </n-scrollbar>
 
             <div v-else class="i-empty">
