@@ -5,8 +5,14 @@
         class="i-sidebar"
     >
         <div class="i-sidebar-header">
+            <n-skeleton
+                v-if="loading"
+                :width="40"
+                :height="24"
+                :sharp="false"
+            ></n-skeleton>
             <div class="i-logo">
-                <img :src="APP_LOGO" alt="" />
+                <img :src="APP_LOGO" @load="loading = false" />
             </div>
             <h1 v-if="!mini" class="i-app-title">{{ APP_TITLE }}</h1>
             <a
@@ -47,6 +53,7 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
 import {
     defineComponent,
     ref,
@@ -55,9 +62,11 @@ import {
     computed,
 } from "vue";
 import SidebarMenu from "./Sidebar-menu.vue";
-import { NScrollbar, NAutoComplete, NModal } from "naive-ui";
+import { NScrollbar, NAutoComplete, NModal, NSkeleton } from "naive-ui";
 import { APP_LOGO, APP_TITLE } from "@/settings.js";
 import { useI18n } from "vue-i18n";
+import routes from "@/router/routes";
+import { filterMenus } from "@/utils/utils";
 
 export default defineComponent({
     name: "Sidebar",
@@ -66,16 +75,12 @@ export default defineComponent({
         NAutoComplete,
         SidebarMenu,
         NModal,
+        NSkeleton,
     },
-    props: {
-        menus: {
-            type: Array,
-            default: () => [],
-        },
-    },
-    setup(props) {
+    setup() {
+        const Store = useStore();
         const MINI_WIDTH = 50;
-        const menus = ref(props.menus);
+        const menus = filterMenus(routes, Store.state.user.role);
         const { t } = useI18n();
 
         const width = ref(MINI_WIDTH);
@@ -93,6 +98,7 @@ export default defineComponent({
         const modalSearch = ref(false);
         const valueSearch = ref("");
         const optionsSearch = ref([]);
+        const loading = ref(true);
 
         let ox = 0;
         let ow = width.value;
@@ -146,12 +152,15 @@ export default defineComponent({
             modalSearch.value = !modalSearch.value;
         }
 
+        function handleLogoLoad() {
+            loading.value = false;
+        }
+
         return {
             APP_LOGO,
             APP_TITLE,
+            loading,
             menus,
-            width,
-            resizing,
             cssSidebar,
             mini,
             valueSearch,
@@ -198,8 +207,7 @@ export default defineComponent({
 }
 .i-logo {
     display: flex;
-    height: 40px;
-    min-width: 34px;
+    height: 24px;
 }
 .i-app-title {
     margin: 0 1rem;

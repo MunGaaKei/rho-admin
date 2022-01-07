@@ -28,10 +28,13 @@
             <n-tooltip>
                 <template #trigger>
                     <router-link to="/user" class="i-btn i-user">
-                        <n-avatar
+                        <!-- <n-avatar
                             :src="user.avatar"
                             class="i-avatar"
-                        ></n-avatar>
+                        ></n-avatar> -->
+                        <span class="i-avatar">{{
+                            firstLetter(user.name)
+                        }}</span>
                     </router-link>
                 </template>
                 <span>{{ user.name }}</span>
@@ -70,6 +73,10 @@ export default defineComponent({
             Store.commit("settings/CHANGE_THEME");
         }
 
+        function firstLetter(name) {
+            return name.substr(0, 1).toUpperCase();
+        }
+
         return {
             user,
             attrs,
@@ -77,6 +84,7 @@ export default defineComponent({
             fullscreen,
             changeTheme,
             changeLocale,
+            firstLetter,
         };
     },
 });
@@ -142,7 +150,9 @@ export default defineComponent({
 .i-avatar {
     width: 28px;
     height: 28px;
-    background: #aaa;
+    line-height: 28px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1);
     border-radius: var(--radius);
 }
 </style>

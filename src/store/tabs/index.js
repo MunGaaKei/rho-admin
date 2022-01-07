@@ -41,8 +41,8 @@ const mutations = {
             state.cacheViews.splice(cachedIndex, 1);
         }
 
-        if (tabIndex > -1) {
-            state.tabs.splice(tabIndex, 1);
+        state.tabs.splice(tabIndex, 1);
+        if (state.active === tab.name) {
             if (state.tabs.length) {
                 tab = state.tabs[tabIndex === 0 ? 0 : --tabIndex];
                 Router.push({ name: tab.name });
