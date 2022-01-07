@@ -2,26 +2,18 @@
     <div class="content">
         <div class="header">
             <h3>{{ t("common.hi") }}, {{ name }}</h3>
-            <n-button-group>
-                <n-button
-                    strong
-                    secondary
-                    size="small"
-                    type="error"
-                    @click="handleLogOut"
-                >
-                    {{ cancelable ? t("common.confirm") : t("common.signout") }}
-                </n-button>
-                <n-button
-                    v-show="cancelable"
-                    @click="cancleLogOut"
-                    secondary
-                    size="small"
-                >
-                    {{ t("common.cancel") }}
-                </n-button>
-            </n-button-group>
         </div>
+        <p>
+            <a @click="handleLogOut">
+                {{ cancelable ? t("common.confirm") : t("common.signout") }}
+            </a>
+            <template v-if="cancelable">
+                ,
+                <a @click="cancleLogOut" style="opacity: 0.6">
+                    {{ t("common.cancel") }}
+                </a>
+            </template>
+        </p>
     </div>
 </template>
 
@@ -29,16 +21,11 @@
 import { defineComponent, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { NButton, NButtonGroup } from "naive-ui";
 import { mapState } from "@/store/mapStore";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({
     name: "User",
-    components: {
-        NButton,
-        NButtonGroup,
-    },
     setup() {
         const Store = useStore();
         const Router = useRouter();

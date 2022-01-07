@@ -16,7 +16,7 @@ const { tabs } = mapState(Store.state.tabs, ["tabs"]);
 
 <template>
     <div class="i-container">
-        <Sidebar :menus="menus"></Sidebar>
+        <Sidebar></Sidebar>
 
         <div class="i-main">
             <Header></Header>
