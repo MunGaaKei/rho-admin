@@ -117,7 +117,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .i-container {
-    background: #eee;
+    background: var(--background-secondary);
 }
 .form {
     box-sizing: border-box;
@@ -126,7 +126,7 @@ export default defineComponent({
     width: 320px;
     max-width: 100%;
     border-radius: var(--radius);
-    background: #fff;
+    background: var(--background);
     h1 {
         margin-bottom: 24px;
     }
