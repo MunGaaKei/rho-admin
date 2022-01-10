@@ -6,7 +6,7 @@ export default [
         path: BASE,
         component: () => import("./index.vue"),
         meta: {
-            title: "设置",
+            title: "routes.setting",
             hide: true,
         },
     },

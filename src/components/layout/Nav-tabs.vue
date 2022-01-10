@@ -13,7 +13,9 @@
                 :class="{ 'tab-active': tabs.active === tab.name }"
                 @contextmenu.prevent="handleContextMenu(tab, $event)"
             >
-                <span>{{ tab.i18n ? t(tab.title) : tab.title }}</span>
+                <span>
+                    {{ titleFormatter(tab.title, tab.i18n, tab.titleFormat) }}
+                </span>
                 <i class="ri-close-line" @click.prevent="handleClose(tab)"></i>
             </router-link>
         </n-scrollbar>
@@ -73,11 +75,12 @@ export default defineComponent({
                 path,
                 fullPath,
                 query,
-                meta: { title, noCached, i18n },
+                meta: { title, noCached, i18n, titleFormat },
             } = route;
 
             Store.commit("tabs/TABS_ADD", {
                 title,
+                titleFormat,
                 name,
                 path,
                 noCached,
@@ -167,6 +170,14 @@ export default defineComponent({
             };
         }
 
+        function titleFormatter(title, i18n, formatter) {
+            if (i18n) {
+                return formatter ? formatter(t(title)) : t(title);
+            } else {
+                return title;
+            }
+        }
+
         return {
             scrollbar$,
             tabs,
@@ -180,7 +191,7 @@ export default defineComponent({
             hideContextMenu,
             handleContextMenuSelect,
             generateContextMenu,
-            t,
+            titleFormatter,
         };
     },
 });

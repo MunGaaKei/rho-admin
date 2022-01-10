@@ -17,14 +17,6 @@
             </div>
             <a class="ri-fullscreen-line i-btn" @click="fullscreen()"></a>
 
-            <router-link
-                to="/message"
-                class="i-btn"
-                :class="{ 'i-unread': unread }"
-            >
-                <i class="ri-notification-3-line"></i>
-            </router-link>
-
             <n-tooltip>
                 <template #trigger>
                     <router-link to="/user" class="i-btn i-user">
@@ -61,7 +53,6 @@ export default defineComponent({
     setup(props, { attrs }) {
         const Store = useStore();
         const user = Store.state.user;
-        const unread = ref(true);
         let locale = "en";
 
         function changeLocale() {
@@ -80,7 +71,6 @@ export default defineComponent({
         return {
             user,
             attrs,
-            unread,
             fullscreen,
             changeTheme,
             changeLocale,
@@ -108,16 +98,6 @@ export default defineComponent({
     padding: 0 4px;
     height: var(--header-height);
     background: var(--background);
-}
-.i-unread:after {
-    content: "\20";
-    position: absolute;
-    right: 4px;
-    top: 4px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #f33;
 }
 .i-dropdown {
     &:hover {

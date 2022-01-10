@@ -19,9 +19,11 @@ export default {
     },
 
     routes: {
+        dashboard: "仪表盘",
         home: "首页",
         setting: "设置",
         user: "用户中心",
         messages: "消息中心",
+        menu: "菜单",
     },
 };

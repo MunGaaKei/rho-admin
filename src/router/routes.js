@@ -1,19 +1,19 @@
 import Main from "@/views/main/index.vue";
 
-import Home from "@/views/home/route";
+import Dashboard from "@/views/dashboard/route";
 import Menus from "@/views/menu/route";
 import User from "@/views/user/route";
 import Setting from "@/views/settings/route";
-import Message from "@/views/message/route";
 
 /**
  * ${param} meta:
  * title: String
+ * titleFormat Function 配合i18n合成字符串
  * auth: Array[] 权限
- * i18n: Boolean
+ * i18n: Boolean 页面标题是否是i18n识别
  * icon: String('<i class="ri-hotel-fill"></i>')
  * noCached: Boolean 不缓存，默认false
- * hide: Boolean 在侧边栏隐藏，默认false
+ * hide: Boolean 在侧边栏菜单隐藏，默认false
  */
 export default [
     {
@@ -21,10 +21,10 @@ export default [
         path: "/",
         component: Main,
         meta: {
-            title: "routes.home",
+            title: "routes.dashboard",
             i18n: true,
         },
-        children: [...Home, ...Menus, ...User, ...Setting, ...Message],
+        children: [...Dashboard, ...Menus, ...User, ...Setting],
     },
     {
         name: "Login",

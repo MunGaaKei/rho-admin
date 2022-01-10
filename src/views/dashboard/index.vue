@@ -17,7 +17,7 @@ import { NSkeleton, NSpace } from "naive-ui";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({
-    name: "Home",
+    name: "Dashboard",
     components: {
         NSkeleton,
         NSpace,

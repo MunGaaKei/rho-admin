@@ -1,15 +1,15 @@
-const BASE = "/home";
+const BASE = "/dashboard";
 
 export default [
     {
-        name: "Home",
+        name: "Dashboard",
         path: BASE,
         component: () => import("./index.vue"),
         meta: {
-            title: "routes.home",
+            title: "routes.dashboard",
             i18n: true,
             noCached: true,
-            icon: '<i class="ri-hotel-fill"></i>',
+            icon: '<i class="ri-dashboard-fill"></i>',
         },
     },
 ];

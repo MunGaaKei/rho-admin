@@ -12,13 +12,9 @@
                     v-html="menu.meta.icon"
                     class="i-menu-icon"
                 ></span>
-                <span
-                    class="i-menu-title"
-                    :class="{ 'i-hide-on-mini': root }"
-                    >{{
-                        menu.meta.i18n ? t(menu.meta.title) : menu.meta?.title
-                    }}</span
-                >
+                <span class="i-menu-title" :class="{ 'i-hide-on-mini': root }">
+                    {{ titleFormatter(menu.meta) }}
+                </span>
             </router-link>
             <i
                 v-if="menu.children?.length"
@@ -73,11 +69,20 @@ export default defineComponent({
             active.value = active.value ? "" : path;
         }
 
+        function titleFormatter({ i18n, title, titleFormat }) {
+            if (i18n) {
+                title = t(title);
+                return titleFormat ? titleFormat(title) : title;
+            } else {
+                return title;
+            }
+        }
+
         return {
             active,
             root,
             handleToggle,
-            t,
+            titleFormatter,
         };
     },
 });

@@ -7,8 +7,9 @@ export default [
         redirect: `${BASE}/1`,
         component: () => import("./index.vue"),
         meta: {
-            title: "菜单",
+            title: "routes.menu",
             icon: '<i class="ri-folder-3-line"></i>',
+            i18n: true,
         },
         children: [
             {
@@ -16,9 +17,10 @@ export default [
                 path: `${BASE}/1`,
                 component: () => import("./menu-1.vue"),
                 meta: {
-                    title: "菜单 1",
+                    title: "routes.menu",
+                    titleFormat: (title) => `${title} I`,
                     auth: [],
-                    i18n: false,
+                    i18n: true,
                 },
             },
             {
@@ -26,9 +28,10 @@ export default [
                 path: `${BASE}/2`,
                 component: () => import("./menu-2.vue"),
                 meta: {
-                    title: "菜单 2",
+                    title: "routes.menu",
+                    titleFormat: (title) => `${title} II`,
                     auth: [],
-                    i18n: false,
+                    i18n: true,
                 },
             },
         ],

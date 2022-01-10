@@ -19,9 +19,11 @@ export default {
     },
 
     routes: {
+        dashboard: "Dashboard",
         home: "Home",
         setting: "Settings",
         user: "User",
         messages: "Messages",
+        menu: "Menu",
     },
 };
