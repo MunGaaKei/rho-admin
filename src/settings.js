@@ -1,6 +1,6 @@
 export const APP_NAME = "Daphne odera";
 
-export const APP_TITLE = "后台系统";
+export const APP_TITLE = "RHO ρ";
 
 export const APP_LOGO = "/src/assets/logo.png";
 
