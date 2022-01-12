@@ -26,4 +26,14 @@ export default {
         messages: "Messages",
         menu: "Menu",
     },
+
+    settings: {
+        theme_setting: "Theme setting",
+        theme_dark: "Dark",
+        theme_light: "Light",
+        auto: "Auto",
+        save: "Save",
+        discard: "Discard",
+        cancle: "Cancle",
+    },
 };

@@ -1,0 +1,21 @@
+.i-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    overflow: hidden;
+    background: var(--background);
+    color: var(--color);
+}
+
+.i-btn {
+    position: relative;
+    display: flex;
+    padding: 0 6px;
+    border-radius: var(--radius);
+}
+.i-btn:hover {
+    background: var(--background-secondary);
+}

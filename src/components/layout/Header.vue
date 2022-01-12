@@ -12,7 +12,10 @@
                         <i class="ri-settings-3-fill"></i>
                     </router-link>
 
-                    <a @click="changeTheme" class="ri-t-shirt-fill i-btn"></a>
+                    <a
+                        @click="changeTheme"
+                        class="ri-moon-clear-fill i-btn"
+                    ></a>
                 </div>
             </div>
             <a class="ri-fullscreen-line i-btn" @click="fullscreen()"></a>
@@ -53,11 +56,10 @@ export default defineComponent({
     setup(props, { attrs }) {
         const Store = useStore();
         const user = Store.state.user;
-        let locale = "en";
 
         function changeLocale() {
-            locale = locale === "en" ? "cn" : "en";
-            i18n.global.locale.value = locale;
+            i18n.global.locale.value =
+                i18n.global.locale.value === "cn" ? "en" : "cn";
         }
 
         function changeTheme() {

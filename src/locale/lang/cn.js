@@ -26,4 +26,13 @@ export default {
         messages: "消息中心",
         menu: "菜单",
     },
+    settings: {
+        theme_setting: "主题设置",
+        theme_dark: "深色",
+        theme_light: "浅色",
+        auto: "自动",
+        save: "保存",
+        discard: "抛弃",
+        cancle: "取消",
+    },
 };

@@ -5,7 +5,7 @@ import store from "@/store";
 import i18n from "@/locale";
 
 import "remixicon/fonts/remixicon.css";
-import "@/assets/css/common.css";
+import "@/assets/scss/main.scss";
 
 createApp(App).use(i18n).use(store).use(router).mount("#app");
 

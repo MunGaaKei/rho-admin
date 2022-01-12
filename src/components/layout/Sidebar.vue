@@ -184,6 +184,8 @@ export default defineComponent({
     flex-direction: column;
     align-items: center;
     transition: var(--transition);
+    background: var(--background);
+    color: var(--color);
 }
 .i-sidebar-header {
     position: sticky;
