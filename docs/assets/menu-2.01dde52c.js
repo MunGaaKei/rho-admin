@@ -1,1 +1,0 @@
-import{_ as e}from"./index.c0aecffe.js";import{o as _,t as c}from"./vendor.9d0d582c.js";const r={};function n(t,a){return _(),c("h2",null,"MENU - 2")}var d=e(r,[["render",n],["__scopeId","data-v-4a69d1cc"]]);export{d as default};
