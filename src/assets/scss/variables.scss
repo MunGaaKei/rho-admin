@@ -13,7 +13,8 @@
     font-weight: bold;
 }
 
-:root {
+:root,
+.theme-light {
     --font: normal 400 14px/1.5 "noto", -apple-system, BlinkMacSystemFont,
         Oxygen, Ubuntu, Cantarell, Consolas, "Open Sans", "Helvetica Neue",
         sans-serif;

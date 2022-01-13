@@ -35,11 +35,49 @@
                             v-for="o in options.theme"
                             :key="o.value"
                             :value="o.value"
+                            :disabled="o.disabled"
                         >
                             {{ t(o.label) }}
                         </n-radio>
                     </n-space>
                 </n-radio-group>
+            </n-form-item>
+
+            <n-form-item :label="t('settings.sidebar_reverse')">
+                <n-switch
+                    v-model:value="FormData.sidebar_reverse"
+                    @update:value="handleManualChange"
+                ></n-switch>
+            </n-form-item>
+
+            <n-form-item :label="t('settings.locale_setting')">
+                <n-radio-group v-model:value="FormData.locale">
+                    <n-space>
+                        <n-radio
+                            v-for="o in langs"
+                            :key="o.value"
+                            :value="o.value"
+                        >
+                            {{ o.label }}
+                        </n-radio>
+                    </n-space>
+                </n-radio-group>
+            </n-form-item>
+
+            <n-form-item label=" ">
+                <n-popconfirm
+                    @positive-click="handleRestore"
+                    :negative-text="t('common.cancel')"
+                    :positive-text="t('common.confirm')"
+                    :show-icon="false"
+                >
+                    <template #trigger>
+                        <n-button type="error" secondary strong>
+                            {{ t("settings.restore") }}
+                        </n-button>
+                    </template>
+                    <span>{{ t("settings.need_reload") }}</span>
+                </n-popconfirm>
             </n-form-item>
         </n-form>
     </div>
@@ -50,26 +88,30 @@ import { defineComponent, reactive, ref, onMounted, onUnmounted } from "vue";
 import {
     NForm,
     NFormItem,
-    NInput,
+    NInputNumber,
     NSwitch,
     NRadio,
     NRadioGroup,
     NButton,
     NSpace,
+    NPopconfirm,
 } from "naive-ui";
 import { useI18n } from "vue-i18n";
+import { useStore } from "vuex";
+import { langs } from "@/locale";
 
 export default defineComponent({
     name: "Settings",
     setup() {
         const { t } = useI18n();
+        const Store = useStore();
         const form$ = ref(null);
         const container$ = ref(null);
         const options = reactive({
             theme: [
-                { value: "light", label: "settings.theme_light" },
-                { value: "dark", label: "settings.theme_dark" },
-                { value: "auto", label: "settings.auto" },
+                { value: "", label: "settings.theme_light" },
+                { value: "theme-dark", label: "settings.theme_dark" },
+                { value: "auto", label: "settings.auto", disabled: true },
             ],
         });
         const changed = ref(false);
@@ -95,9 +137,7 @@ export default defineComponent({
         }
 
         function getRawFormData() {
-            return reactive({
-                theme: "light",
-            });
+            return reactive(Object.assign({}, Store.state.settings));
         }
 
         function handleFormChange() {
@@ -113,13 +153,23 @@ export default defineComponent({
         function handleSubmit() {
             loading.value = true;
             changed.value = false;
+            Store.commit("settings/UPDATE_SETTINGS", FormData);
             form$.value.restoreValidation();
             loading.value = false;
+        }
+
+        function handleManualChange(value) {
+            changed.value = true;
+        }
+
+        function handleRestore() {
+            Store.commit("settings/RESTORE_SETTINGS");
         }
 
         return {
             FormData,
             options,
+            langs,
             changed,
             loading,
             labelPlacement,
@@ -127,6 +177,8 @@ export default defineComponent({
             handleFormChange,
             handleCancle,
             handleSubmit,
+            handleManualChange,
+            handleRestore,
             form$,
             container$,
         };
@@ -134,12 +186,13 @@ export default defineComponent({
     components: {
         NForm,
         NFormItem,
-        NInput,
+        NInputNumber,
         NSwitch,
         NRadio,
         NRadioGroup,
         NButton,
         NSpace,
+        NPopconfirm,
     },
 });
 </script>
@@ -153,7 +206,7 @@ export default defineComponent({
     z-index: 10;
     display: flex;
     align-items: center;
-    padding: 4px 12px;
+    padding: 8px 12px;
     background: var(--background-opacity);
     backdrop-filter: blur(8px);
     transition: var(--transition);
@@ -168,7 +221,7 @@ export default defineComponent({
     }
 }
 .i-settings-form {
-    padding: 40px 12px;
+    padding: 60px 12px 40px;
     :deep(.n-form-item-label) {
         margin-right: 20px;
     }

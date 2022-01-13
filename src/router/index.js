@@ -30,6 +30,7 @@ Router.beforeEach((to, from, next) => {
 
 Router.afterEach((to) => {
     let { title, i18n } = to?.meta;
+
     title = i18n ? Locale.global.t(title) : title;
     document.title = `${APP_TITLE} ${title}`;
 });

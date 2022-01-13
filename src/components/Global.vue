@@ -1,9 +1,3 @@
-<template>
-    <n-config-provider :theme="theme" :theme-overrides="globalStyle" abstract>
-        <slot></slot>
-    </n-config-provider>
-</template>
-
 <script setup>
 import { ref, watchEffect } from "vue";
 import { useStore } from "vuex";
@@ -64,6 +58,12 @@ watchEffect(() => {
     );
 });
 </script>
+
+<template>
+    <n-config-provider :theme="theme" :theme-overrides="globalStyle">
+        <slot></slot>
+    </n-config-provider>
+</template>
 
 <style>
 .n-input-wrapper {

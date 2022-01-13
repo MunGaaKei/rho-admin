@@ -2,9 +2,9 @@ export default {
     common: {
         hi: "Hi",
         welcome: "Welcome",
-        signin: "Sign In",
-        signout: "Sign Out",
-        signup: "Sign Up",
+        sign_in: "Sign In",
+        sign_out: "Sign Out",
+        sign_up: "Sign Up",
         confirm: "Confirm",
         cancel: "Cancel",
         close: "Close",
@@ -12,9 +12,9 @@ export default {
         username: "Username",
         password: "Password",
         back: "Return Back",
-        closeLeft: "Close Left",
-        closeAll: "Close All",
-        closeOthers: "Close Others",
+        close_left: "Close Left",
+        close_all: "Close All",
+        close_others: "Close Others",
         refresh: "Refresh",
     },
 
@@ -28,12 +28,16 @@ export default {
     },
 
     settings: {
-        theme_setting: "Theme setting",
+        theme_setting: "Theme",
         theme_dark: "Dark",
         theme_light: "Light",
         auto: "Auto",
+        locale_setting: "Language",
+        sidebar_reverse: "Sidebar Reverse",
         save: "Save",
         discard: "Discard",
+        restore: "Restore",
+        need_reload: "Restore after refresh",
         cancle: "Cancle",
     },
 };

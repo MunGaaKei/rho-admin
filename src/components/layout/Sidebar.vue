@@ -1,7 +1,13 @@
 <template>
     <div
         :style="cssSidebar"
-        :class="{ 'i-sidebar-mini': mini }"
+        :class="{
+            'i-sidebar-mini': mini,
+            'theme-dark': sidebarReverse,
+            'theme-light':
+                Store.state.settings.theme === 'theme-dark' &&
+                Store.state.settings.sidebar_reverse === true,
+        }"
         class="i-sidebar"
     >
         <div class="i-sidebar-header">
@@ -99,6 +105,12 @@ export default defineComponent({
         const valueSearch = ref("");
         const optionsSearch = ref([]);
         const loading = ref(true);
+        const sidebarReverse = computed(() => {
+            return (
+                Store.state.settings.sidebar_reverse &&
+                Store.state.settings.theme !== "theme-dark"
+            );
+        });
 
         let ox = 0;
         let ow = width.value;
@@ -106,7 +118,7 @@ export default defineComponent({
 
         onMounted(() => {
             if (window.innerWidth > 720) {
-                width.value = cacheWidth = 240;
+                width.value = cacheWidth = Store.state.settings.sidebar_width;
             }
 
             document.addEventListener("mouseup", handleMouseup);
@@ -152,11 +164,9 @@ export default defineComponent({
             modalSearch.value = !modalSearch.value;
         }
 
-        function handleLogoLoad() {
-            loading.value = false;
-        }
-
         return {
+            Store,
+            sidebarReverse,
             APP_LOGO,
             APP_TITLE,
             loading,

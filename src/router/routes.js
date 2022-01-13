@@ -31,7 +31,7 @@ export default [
         path: "/login",
         component: () => import("@/views/login/index.vue"),
         meta: {
-            title: "routes.signin",
+            title: "common.sign_in",
             i18n: true,
         },
     },

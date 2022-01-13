@@ -108,7 +108,7 @@ export default defineComponent({
                     Store.commit("tabs/TABS_CLOSE_ALL");
                     break;
                 case "close-left":
-                case "close-rest":
+                case "close-others":
                     Store.commit("tabs/TABS_CLOSE_MULTI", {
                         tab: handledTab,
                         key,
@@ -127,17 +127,17 @@ export default defineComponent({
         function generateContextMenu() {
             return [
                 {
-                    label: t("common.closeAll"),
+                    label: t("common.close_all"),
                     key: "close-all",
                     icon: renderContextMenuIcon("ri-delete-bin-line"),
                 },
                 {
-                    label: t("common.closeLeft"),
+                    label: t("common.close_left"),
                     key: "close-left",
                     icon: renderContextMenuIcon("ri-menu-fold-fill"),
                 },
                 {
-                    label: t("common.closeOthers"),
+                    label: t("common.close_others"),
                     key: "close-others",
                     icon: renderContextMenuIcon("ri-arrow-left-right-fill"),
                 },

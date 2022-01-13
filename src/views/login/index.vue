@@ -31,7 +31,7 @@
                     :disabled="invalidForm()"
                     style="margin-left: auto; width: 120px"
                 >
-                    {{ t("common.signin") }}
+                    {{ t("common.sign_in") }}
                 </n-button>
             </n-form-item>
         </n-form>
@@ -123,7 +123,7 @@ export default defineComponent({
     box-sizing: border-box;
     margin: auto;
     padding: 12px 24px;
-    width: 320px;
+    width: 360px;
     max-width: 100%;
     border-radius: var(--radius);
     background: var(--background);

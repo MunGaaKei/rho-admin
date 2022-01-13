@@ -25,9 +25,9 @@ export function __UserLogin({ username, password }) {
                 if (password === "admin") {
                     resolve({
                         code: 200,
-                        token: "scott-administrator",
-                        name: "Scott",
-                        avatar: "https://pic3.zhimg.com/v2-e3ae8f073ab9a9d52688f23d414f1b02_b.jpg",
+                        token: "rho-administrator",
+                        name: "ρ",
+                        avatar: "https://e7.pngegg.com/pngimages/550/224/png-clipart-rho-greek-alphabet-letter-case-gamma-letter-p-miscellaneous-angle-thumbnail.png",
                         role: "admin",
                     });
                 } else {

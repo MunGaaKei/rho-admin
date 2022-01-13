@@ -16,9 +16,13 @@
                         @click="changeTheme"
                         class="ri-moon-clear-fill i-btn"
                     ></a>
+
+                    <a
+                        class="ri-fullscreen-line i-btn"
+                        @click="fullscreen()"
+                    ></a>
                 </div>
             </div>
-            <a class="ri-fullscreen-line i-btn" @click="fullscreen()"></a>
 
             <n-tooltip>
                 <template #trigger>
@@ -44,7 +48,6 @@ import { useStore } from "vuex";
 import { NTooltip, NAvatar } from "naive-ui";
 import NavTabs from "./Nav-tabs.vue";
 import { fullscreen } from "@/utils/utils";
-import i18n from "@/locale";
 
 export default defineComponent({
     name: "Header",
@@ -58,8 +61,7 @@ export default defineComponent({
         const user = Store.state.user;
 
         function changeLocale() {
-            i18n.global.locale.value =
-                i18n.global.locale.value === "cn" ? "en" : "cn";
+            Store.commit("settings/CHANGE_LOCALE");
         }
 
         function changeTheme() {
@@ -114,7 +116,7 @@ export default defineComponent({
     z-index: 1000;
     top: 100%;
     left: 0;
-    padding: 4px;
+    padding: 2px;
     display: flex;
     flex-wrap: wrap;
     opacity: 0;
@@ -124,6 +126,9 @@ export default defineComponent({
     background: var(--background);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 var(--radius) var(--radius);
+    .i-btn {
+        margin: 2px;
+    }
 }
 .i-user {
     padding: 0;

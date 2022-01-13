@@ -5,7 +5,7 @@
         </div>
         <p>
             <a @click="handleLogOut">
-                {{ cancelable ? t("common.confirm") : t("common.signout") }}
+                {{ cancelable ? t("common.confirm") : t("common.sign_out") }}
             </a>
             <template v-if="cancelable">
                 ,
