@@ -82,7 +82,7 @@ export default defineComponent({
         }
 
         function firstLetter(name) {
-            return name.substr(0, 1).toUpperCase();
+            return name.substr(0, 1);
         }
 
         return {

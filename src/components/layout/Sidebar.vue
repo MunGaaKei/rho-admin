@@ -69,7 +69,8 @@ import {
 } from "vue";
 import SidebarMenu from "./Sidebar-menu.vue";
 import { NScrollbar, NAutoComplete, NModal, NSkeleton } from "naive-ui";
-import { APP_LOGO, APP_TITLE } from "@/settings.js";
+import { APP_TITLE } from "@/settings.js";
+import APP_LOGO from "@/assets/logo.png";
 import { useI18n } from "vue-i18n";
 import routes from "@/router/routes";
 import { filterMenus } from "@/utils/utils";
@@ -118,7 +119,7 @@ export default defineComponent({
 
         onMounted(() => {
             if (window.innerWidth > 720) {
-                width.value = cacheWidth = Store.state.settings.sidebar_width;
+                width.value = cacheWidth = 240;
             }
 
             document.addEventListener("mouseup", handleMouseup);

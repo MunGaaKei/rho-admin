@@ -4,8 +4,6 @@ export const APP_NAME = "Daphne Odera";
 
 export const APP_TITLE = "RHO";
 
-export const APP_LOGO = "/src/assets/logo.png";
-
 export const ON_PERMISSION = false;
 
 export const ROUTE_WHITE_NAME_LIST = ["/", "/login", "/404"];

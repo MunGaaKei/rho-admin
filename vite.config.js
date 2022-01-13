@@ -10,9 +10,9 @@ export default defineConfig(({ mode }) => {
     return {
         base: ENV.VITE_BASE_URL,
         build: {
+            assetsDir: "assets",
             outDir: ENV.VITE_OUTPUT_DIR,
             sourcemap: true,
-            minify: false,
         },
         plugins: [
             vue(),
