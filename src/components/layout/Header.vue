@@ -26,28 +26,40 @@
 
             <n-tooltip>
                 <template #trigger>
-                    <router-link to="/user" class="i-btn i-user">
+                    <router-link
+                        v-if="user.name"
+                        to="/user"
+                        class="i-btn i-user"
+                    >
                         <!-- <n-avatar
                             :src="user.avatar"
                             class="i-avatar"
                         ></n-avatar> -->
-                        <span class="i-avatar">{{
-                            firstLetter(user.name)
-                        }}</span>
+                        <span class="i-avatar">
+                            {{ firstLetter(user.name) }}
+                        </span>
                     </router-link>
+
+                    <router-link
+                        v-else
+                        to="/login"
+                        class="ri-ghost-fill i-btn"
+                    ></router-link>
                 </template>
-                <span>{{ user.name }}</span>
+                <span v-if="user.name">{{ user.name }}</span>
+                <span v-else>{{ t("common.sign_in") }}</span>
             </n-tooltip>
         </div>
     </div>
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent } from "vue";
 import { useStore } from "vuex";
 import { NTooltip, NAvatar } from "naive-ui";
 import NavTabs from "./Nav-tabs.vue";
 import { fullscreen } from "@/utils/utils";
+import { useI18n } from "vue-i18n";
 
 export default defineComponent({
     name: "Header",
@@ -59,6 +71,7 @@ export default defineComponent({
     setup(props, { attrs }) {
         const Store = useStore();
         const user = Store.state.user;
+        const { t } = useI18n();
 
         function changeLocale() {
             Store.commit("settings/CHANGE_LOCALE");
@@ -79,6 +92,7 @@ export default defineComponent({
             changeTheme,
             changeLocale,
             firstLetter,
+            t,
         };
     },
 });
@@ -127,7 +141,7 @@ export default defineComponent({
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     border-radius: 0 0 var(--radius) var(--radius);
     .i-btn {
-        margin: 2px;
+        margin: 1px;
     }
 }
 .i-user {
@@ -139,7 +153,7 @@ export default defineComponent({
     height: 28px;
     line-height: 28px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.1);
+    background: var(--background-secondary);
     border-radius: var(--radius);
 }
 </style>

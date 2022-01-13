@@ -3,7 +3,7 @@
         <n-form
             :model="formState"
             :rules="rules"
-            class="form"
+            class="i-form"
             label-placement="left"
         >
             <h1>{{ APP_NAME }}</h1>
@@ -23,13 +23,22 @@
                 ></n-input>
             </n-form-item>
             <n-form-item>
+                <p class="i-form-msg"></p>
+                <n-button
+                    v-if="!ON_PERMISSION"
+                    quaternary
+                    style="margin: 0 12px 0 0"
+                    @click="handleCancel"
+                >
+                    {{ t("common.cancel") }}
+                </n-button>
                 <n-button
                     type="primary"
                     attr-type="submit"
                     :loading="loading"
                     @click="handleSubmit"
                     :disabled="invalidForm()"
-                    style="margin-left: auto; width: 120px"
+                    style="width: 120px"
                 >
                     {{ t("common.sign_in") }}
                 </n-button>
@@ -44,7 +53,7 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { NForm, NFormItem, NInput, NButton, useMessage } from "naive-ui";
 import { useI18n } from "vue-i18n";
-import { APP_NAME } from "@/settings.js";
+import { APP_NAME, ON_PERMISSION } from "@/settings.js";
 
 export default defineComponent({
     setup() {
@@ -96,12 +105,18 @@ export default defineComponent({
             return username === "" || password === "";
         }
 
+        function handleCancel() {
+            Router.push("/");
+        }
+
         return {
             APP_NAME,
+            ON_PERMISSION,
             loading,
             formState,
             rules,
             handleSubmit,
+            handleCancel,
             invalidForm,
             t,
         };
@@ -119,7 +134,7 @@ export default defineComponent({
 .i-container {
     background: var(--background-secondary);
 }
-.form {
+.i-form {
     box-sizing: border-box;
     margin: auto;
     padding: 12px 24px;
@@ -130,5 +145,8 @@ export default defineComponent({
     h1 {
         margin-bottom: 24px;
     }
+}
+.i-form-msg {
+    margin-right: auto;
 }
 </style>

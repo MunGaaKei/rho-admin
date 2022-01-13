@@ -1,21 +1,16 @@
-<script setup>
-import { NResult, NButton } from "naive-ui";
-import { useI18n } from "vue-i18n";
-import { useRouter } from "vue-router";
+<script>
+import { defineComponent } from "vue";
+import Page404 from "@/components/404.vue";
 
-const Router = useRouter();
-const { t } = useI18n();
-
-function returnBack() {
-    Router.go(-1);
-}
+export default defineComponent({
+    name: "404",
+    setup() {},
+    components: {
+        Page404,
+    },
+});
 </script>
+
 <template>
-    <div class="i-container">
-        <n-result status="404" title="404" style="margin: auto">
-            <template #footer>
-                <n-button @click="returnBack">{{ t("common.back") }}</n-button>
-            </template>
-        </n-result>
-    </div>
+    <Page404 />
 </template>

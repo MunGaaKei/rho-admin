@@ -1,23 +1,7 @@
-@font-face {
-    font-family: "noto";
-    src: url("./../fonts/NotoSansSC-Regular.otf");
-}
-@font-face {
-    font-family: "noto";
-    src: url("./../fonts/NotoSansSC-Medium.otf");
-    font-weight: medium;
-}
-@font-face {
-    font-family: "noto";
-    src: url("./../fonts/NotoSansSC-Bold.otf");
-    font-weight: bold;
-}
-
 :root,
 .theme-light {
-    --font: normal 400 14px/1.5 "noto", -apple-system, BlinkMacSystemFont,
-        Oxygen, Ubuntu, Cantarell, Consolas, "Open Sans", "Helvetica Neue",
-        sans-serif;
+    --font: normal 400 14px/1.5 -apple-system, BlinkMacSystemFont, Oxygen,
+        Ubuntu, Cantarell, Consolas, "Open Sans", "Helvetica Neue", sans-serif;
     --transition: all 0.24s ease;
 
     --background: #fff;

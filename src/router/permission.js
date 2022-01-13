@@ -1,6 +1,5 @@
 import { ROUTE_WHITE_NAME_LIST } from "@/settings.js";
 import { getUserToken } from "@/utils/auth.js";
-import Store from "@/store";
 
 /* 已登陆 => 白名单 => 角色 => OK */
 
@@ -13,7 +12,6 @@ import Store from "@/store";
 export function hasPermission({ path, meta: { auth = [] } }) {
     const user = getUserToken();
     if (user) {
-        Store.commit("user/USER_INIT", user);
         if (
             ROUTE_WHITE_NAME_LIST.includes(path) ||
             !auth.length ||
