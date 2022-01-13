@@ -1,0 +1,1 @@
+import{_ as o,a as n}from"./index.c0aecffe.js";import{j as t,f as r,o as a,c as s}from"./vendor.9d0d582c.js";const c=t({name:"Menu",components:{RouterBeta:n},setup(){}});function p(_,f,m,d,i,u){const e=r("router-beta");return a(),s(e)}var l=o(c,[["render",p]]);export{l as default};
