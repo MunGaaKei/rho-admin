@@ -9,10 +9,15 @@ export default defineConfig(({ mode }) => {
 
     return {
         base: ENV.VITE_BASE_URL,
+        build: {
+            outDir: ENV.VITE_OUTPUT_DIR,
+            sourcemap: true,
+            minify: false,
+        },
         plugins: [
             vue(),
             vueI18n({
-                compositionOnly: false,
+                runtimeOnly: false,
                 include: resolve(__dirname, "./src/locale/lang/*"),
             }),
         ],

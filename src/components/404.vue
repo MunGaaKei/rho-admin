@@ -15,12 +15,12 @@ function returnBack() {
         <n-result status="404" title="404" style="margin: auto">
             <template #footer>
                 <n-space>
-                    <!-- <n-button @click="Router.push('/')" secondary>
+                    <n-button @click="Router.push('/')" secondary>
                         {{ t("routes.home") }}
                     </n-button>
                     <n-button @click="returnBack" type="primary">
                         {{ t("common.back") }}
-                    </n-button> -->
+                    </n-button>
                 </n-space>
             </template>
         </n-result>
