@@ -12,6 +12,7 @@ export default defineConfig(({ mode }) => {
         plugins: [
             vue(),
             vueI18n({
+                compositionOnly: false,
                 include: resolve(__dirname, "./src/locale/lang/*"),
             }),
         ],
