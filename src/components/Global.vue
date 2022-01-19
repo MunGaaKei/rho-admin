@@ -66,7 +66,7 @@ watchEffect(() => {
 </template>
 
 <style>
-.n-input-wrapper {
+.n-input {
     background: var(--background-secondary);
     border-radius: 4px;
 }

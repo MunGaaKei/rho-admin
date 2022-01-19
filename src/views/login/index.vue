@@ -51,19 +51,19 @@
 import { ref, reactive, defineComponent } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
-import { NForm, NFormItem, NInput, NButton, useMessage } from "naive-ui";
+import { NForm, NFormItem, NInput, NButton } from "naive-ui";
 import { useI18n } from "vue-i18n";
 import { APP_NAME, ON_PERMISSION } from "@/settings.js";
+import Message from "@/components/message";
 
 export default defineComponent({
     setup() {
         const Store = useStore();
         const Router = useRouter();
-        const Message = useMessage();
         const { t } = useI18n();
         const formState = reactive({
-            username: "",
-            password: "",
+            username: "admin",
+            password: "admin",
         });
         const rules = {
             username: {
@@ -90,8 +90,8 @@ export default defineComponent({
                     break;
                 case 1:
                 case 2:
+                    Message(`😖   ${msg}`);
                     formState.password = "";
-                    Message.error(msg);
                     break;
                 default:
                     break;
