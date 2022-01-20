@@ -24,7 +24,7 @@
             ></i>
         </div>
         <ul v-if="menu.children?.length" class="i-sub-menu">
-            <SidebarMenu :menus="menu.children" :root="false"></SidebarMenu>
+            <Menu :menus="menu.children" :root="false"></Menu>
         </ul>
     </li>
 </template>
@@ -35,38 +35,34 @@ import { useRouter, useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
 
 export default defineComponent({
-    name: "SidebarMenu",
+    name: "Menu",
     props: {
         menus: {
             type: Array,
             default: [],
-        },
-        active: {
-            type: String,
-            default: "",
         },
         root: {
             type: Boolean,
             default: true,
         },
     },
-    setup(props) {
+    setup() {
         const Router = useRouter();
         const Route = useRoute();
         const { t } = useI18n();
 
-        const active = ref(props.active);
-
-        let root = props.root;
-
-        active.value = Route.path;
+        const active = ref(Route.path);
 
         Router.afterEach((to) => {
             active.value = to.fullPath;
         });
 
         function handleToggle(path) {
-            active.value = active.value ? "" : path;
+            if (active.value === path) {
+                active.value = "/";
+            } else {
+                active.value = path;
+            }
         }
 
         function titleFormatter({ i18n, title, titleFormat }) {
@@ -80,7 +76,6 @@ export default defineComponent({
 
         return {
             active,
-            root,
             handleToggle,
             titleFormatter,
         };

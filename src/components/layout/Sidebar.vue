@@ -32,11 +32,11 @@
         </div>
 
         <ul v-if="mini" class="i-menus">
-            <SidebarMenu :menus="menus"></SidebarMenu>
+            <Menu :menus="menus"></Menu>
         </ul>
         <n-scrollbar v-else>
             <ul class="i-menus">
-                <SidebarMenu :menus="menus"></SidebarMenu>
+                <Menu :menus="menus"></Menu>
             </ul>
         </n-scrollbar>
 
@@ -67,7 +67,7 @@ import {
     onBeforeUnmount,
     computed,
 } from "vue";
-import SidebarMenu from "./Sidebar-menu.vue";
+import Menu from "./Menu.vue";
 import { NScrollbar, NAutoComplete, NModal, NSkeleton } from "naive-ui";
 import { APP_TITLE } from "@/settings.js";
 import APP_LOGO from "@/assets/logo.png";
@@ -80,7 +80,7 @@ export default defineComponent({
     components: {
         NScrollbar,
         NAutoComplete,
-        SidebarMenu,
+        Menu,
         NModal,
         NSkeleton,
     },
@@ -100,7 +100,7 @@ export default defineComponent({
             return text;
         });
         const mini = computed(() => {
-            return width.value < 120;
+            return width.value < 180;
         });
         const modalSearch = ref(false);
         const valueSearch = ref("");
@@ -135,7 +135,7 @@ export default defineComponent({
             if (resizing.value) {
                 e.preventDefault();
                 let w = ow + (e.pageX - ox);
-                if (w < 120) {
+                if (w < 180) {
                     w = MINI_WIDTH;
                 }
                 width.value = w;
@@ -149,7 +149,7 @@ export default defineComponent({
         function handleMouseup() {
             if (resizing.value) {
                 resizing.value = false;
-                if (width.value !== 50) {
+                if (width.value !== MINI_WIDTH) {
                     cacheWidth = width.value;
                 }
             }
