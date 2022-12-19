@@ -6,4 +6,4 @@ vue-i18n
 axios
 remixicon
 
-[Preview 🖥](https://mungaakei.github.io/rho-admin)
+[Preview 🖥](http://rho-admin.vercel.app/)
